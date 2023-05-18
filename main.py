@@ -16,16 +16,14 @@ def gen_combos(elems):
     return combos
 
 def score(combos, target):
-    combo_strs = [", ".join([str(elem) for elem in combo]) for combo in combos]
     totals = [sum(combo) for combo in combos]
-    diffs = [total - target for total in totals]
-    table = zip(combo_strs, totals, diffs)
-    table_filter = []
-    for row in table:
-        if row[2] <= 0:
-            table_filter.append(row)
-    table_filter.sort(key=lambda x : x[2], reverse=True)
-    return table_filter
+    table = []
+    for combo, total in sorted(zip(combos, totals), key=lambda x: x[1], reverse=True):
+        if total <= target:
+            combo_str = ", ".join([str(elem) for elem in combo])
+            total_str = f"{total:.2f}"
+            table.append((combo_str, total_str))
+    return table
 
 app = Flask(__name__)
 
