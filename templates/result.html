@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <style>
+            table,
+            table td {
+                border: 1px solid #000000;
+            }
+            td {
+                text-align: center;
+            }
+        </style>
+    </head>
+    <body>
+        <table>
+            <tr>
+                <th>Values</th>
+                <th>Total</th>
+                <th>Difference from Target</th>
+            </tr>
+            {% for row in table %}
+            <tr>
+                {% for value in row %}
+                <td>{{ value }}</td>
+                {% endfor %}
+            </tr>
+            {% endfor %}
+        </table>
+    </body>
+</html>
